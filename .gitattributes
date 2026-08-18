@@ -1,0 +1,7 @@
+# Line endings are decided here rather than by each contributor's
+# `core.autocrlf`. Every file in this repository is currently LF in the index,
+# but that holds because one Windows machine happens to have autocrlf on, which
+# is a local setting and not a property of the repository. Without this file the
+# first contributor whose git does not normalise turns a one-line edit to the
+# profile page into a diff of the whole file.
+*  text=auto
