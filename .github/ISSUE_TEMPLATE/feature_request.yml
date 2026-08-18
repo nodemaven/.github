@@ -1,0 +1,31 @@
+name: Feature request
+description: Something this should do and does not
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you were trying to do, and where it got awkward. Describe the situation before the solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like it to do
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What you do instead today
+      description: If there is a workaround, knowing how painful it is helps us prioritise.
+
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Would you be willing to implement this?
+      options:
+        - label: Yes, with a bit of direction on where it should live

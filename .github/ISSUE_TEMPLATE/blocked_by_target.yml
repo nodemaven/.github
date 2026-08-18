@@ -1,0 +1,68 @@
+name: Blocked by a target
+description: A site refuses you and you want help working out which layer is doing it
+labels: ["detection", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Detection happens at three separate layers and the fix is different at each one.
+        These questions narrow it down before anyone spends time guessing.
+
+        **Redact credentials.** No `Proxy-Authorization` headers, no connection strings
+        with passwords.
+
+  - type: input
+    id: target
+    attributes:
+      label: Target
+      placeholder: "google.com/search, amazon.com product page"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: symptom
+    attributes:
+      label: What comes back
+      options:
+        - Redirect to a captcha or /sorry/ page
+        - HTTP error status (403, 429, 503)
+        - HTTP 200 but the page has no data in it
+        - The connection never completes at all
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: engine
+    attributes:
+      label: Engine and mode
+      placeholder: "patchright, headful; camoufox, headless; plain HTTP client"
+    validations:
+      required: true
+
+  - type: textarea
+    id: parameters
+    attributes:
+      label: Connection parameters
+      description: Country, session settings, pool type. Password redacted.
+      placeholder: "country=us, sticky session held across 5 queries, residential"
+    validations:
+      required: true
+
+  - type: input
+    id: rate
+    attributes:
+      label: How often it fails
+      description: A rate over a known number of attempts, not an impression.
+      placeholder: "18 of 20 attempts"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Already ruled out
+      options:
+        - label: The same request fails on a different exit address
+        - label: The same request fails with a different engine
+        - label: I am not behind a VPN that changes how the gateway hostname resolves

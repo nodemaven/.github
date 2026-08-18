@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Account, billing or proxy service problem
+    url: https://nodemaven.com/contact?utm_source=github&utm_medium=issue_template
+    about: Anything about the NodeMaven service itself rather than this code. Support answers faster than we do here.
+  - name: Documentation
+    url: https://docs.nodemaven.com?utm_source=github&utm_medium=issue_template
+    about: Connection parameters, session behaviour, pool types.
+  - name: Question or discussion
+    url: https://t.me/node_maven
+    about: Faster than an issue for anything open-ended.
