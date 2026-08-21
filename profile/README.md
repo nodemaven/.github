@@ -1,17 +1,31 @@
 <div align="center">
 
+<!-- The logo is the one thing in this file that is not text, and the asset is not
+     committed yet. Drop a transparent PNG or SVG at profile/assets/nodemaven-logo.png
+     (see profile/assets/README.md for size) and delete the comment markers around the
+     two lines below. A missing image renders as a broken icon on the organization
+     landing page, which is why it is commented out rather than left hopeful. -->
+
+<a href="https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=logo"><img src="./assets/nodemaven-head.png" alt="NodeMaven"></a>
+
 # NodeMaven
 
-**Next gen web operator.**
+**Next-Gen Web Operator - the only operator you need**
 
-Residential and mobile proxy infrastructure, and the open tooling that proves it works.
+Residential and mobile proxy infrastructure. Open tooling that proves it works.
 
-[Website](https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=oss) ·
-[Docs](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=oss) ·
-[Telegram](https://t.me/node_maven) ·
-[support@nodemaven.com](mailto:support@nodemaven.com)
+[![Website](https://img.shields.io/badge/Website-nodemaven.com-0F172A?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge)
+[![Docs](https://img.shields.io/badge/Docs-docs.nodemaven.com-0F172A?style=for-the-badge&logo=readthedocs&logoColor=white)](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge)
+[![Telegram](https://img.shields.io/badge/Telegram-node__maven-0F172A?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/node_maven)
+[![X](https://img.shields.io/badge/X-NodeMaven-0F172A?style=for-the-badge&logo=x&logoColor=white)](https://x.com/NodeMaven)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-NodeMaven-0F172A?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/nodemaven)
 
 </div>
+
+<!-- One badge style per row, and repository-status badges are deliberately not up
+     here: a CI gate, a licence and a row count belong to proxy-benchmark rather
+     than to the organization, so they sit beside that repository in Tools below.
+     Five social badges in one style is the shape an org landing page reads best in. -->
 
 ---
 
@@ -26,9 +40,32 @@ including ours.
 | I want to... | Go to |
 |---|---|
 | Make my first request through a proxy in under 10 minutes | [Quickstart](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=quickstart) |
+| Never have seen a terminal before and still get a row of data | [proxy-benchmark quickstart](https://github.com/nodemaven/proxy-benchmark/blob/main/docs/quickstart.md) |
 | Use NodeMaven from my language | [SDKs](#sdks) |
-| Work out why a target is blocking me | [Anti-bot detection layers](https://github.com/nodemaven/proxy-benchmark#the-layer-model) |
-| Compare providers on my own targets | [proxy-benchmark](https://github.com/nodemaven/proxy-benchmark) |
+| Work out why a target is blocking me | [The three layers](https://github.com/nodemaven/proxy-benchmark#what-it-measures) |
+| Measure my own proxies, ours or anybody's | [proxy-benchmark](https://github.com/nodemaven/proxy-benchmark) |
+| Check a number we published, offline, without an account | [Reproduce these numbers](https://github.com/nodemaven/proxy-benchmark#reproduce-these-numbers) |
+
+## What a request looks like
+
+The gateway takes its parameters in the username, separated by hyphens, so any HTTP client
+in any language can reach it without a library:
+
+```python
+import requests
+
+proxy = "http://<login>-country-us-sid-abc123-ttl-10m:<password>@gate.nodemaven.com:8080"
+r = requests.get("https://ipinfo.io/json", proxies={"http": proxy, "https": proxy})
+print(r.json()["ip"])
+```
+
+`sid` holds one exit across requests, `ttl` says for how long. The sticky key is the whole
+parameter set rather than `sid` alone, which is the kind of thing you find by probing a
+gateway rather than by reading its documentation - so we probed ours and
+[wrote down what it answers](https://github.com/nodemaven/proxy-benchmark/blob/main/CLAUDE.md#measured-gateway-behaviour),
+including the seven malformed inputs and the seven different replies, none of which names
+the cause. One of them is a 200 with your setting silently dropped, so a run can complete
+while every row claims a parameter that was never applied.
 
 ---
 
@@ -52,9 +89,14 @@ circuit breaker so a bad run does not make itself worse.
 
 ### Tools
 
-| Repository | What it does |
-|---|---|
-| [proxy-benchmark](https://github.com/nodemaven/proxy-benchmark) | Measures success, captcha and block rates against live targets, for any provider |
+| Repository | What it does | Language |
+|---|---|---|
+| [proxy-benchmark](https://github.com/nodemaven/proxy-benchmark) | Measures pass, captcha and block rates against live targets, for any provider and eleven browser engines | Python |
+
+[![gate](https://img.shields.io/github/actions/workflow/status/nodemaven/proxy-benchmark/ci.yml?style=flat-square&label=gate)](https://github.com/nodemaven/proxy-benchmark/actions/workflows/ci.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark/blob/main/LICENSE)
+[![python](https://img.shields.io/badge/python-3.11%20%7C%203.13-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark)
+[![rows](https://img.shields.io/badge/rows-3%2C701%20published-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark/tree/main/data/runs)
 
 ---
 
@@ -64,7 +106,8 @@ Most proxy benchmarks are marketing. Ours is a repository you can run: every ver
 read off the response body rather than the status code, every row lands in JSONL you can
 re-read offline, and the runner has never been told which provider it is talking to - it
 takes a host, a port and a username out of the environment, so pointing it at a
-competitor's gateway is a credentials change rather than a code change.
+competitor's gateway, or at the proxies you already own, is a credentials change rather
+than a code change.
 
 Each question below is a matrix whose arms are interleaved inside one time window, with a
 fresh exit per probe. Two arms run at 10:00 and 14:00 would measure the hour rather than
@@ -75,7 +118,7 @@ the thing under test, so the runner goes round-robin across cells and never in s
 | Does a proven exit keep working? | **Yes. 108/109 held queries pass, 99%** | 120 identities, one 1 h 54 window |
 | Does warming an exit first help? | **No effect.** 32% vs 30%, Fisher p = 1.0 | same run, both arms interleaved |
 | Does pinning `country=us` help? | **No, it costs you.** 13% vs 52% for every other setting, p = 1.5e-05 | 225 attempts over two windows |
-| Is the browser the bottleneck on Google? | **No, it is the address.** Of the pages Google served, the script-running engines parsed every one: patchright 309/309, zendriver 168/168 | every run on disk |
+| Is the browser the bottleneck on Google? | **No, it is the address.** Of the pages Google served, the script-running engines parsed every one: patchright 309/309, zendriver 169/169 | every run on disk |
 | Is there a best anti-detect framework? | **No. It is a diagonal** - the winner changes with the target | every run on disk |
 
 The `country=us` row is about our own product, and it stays in the table. A benchmark that
@@ -89,26 +132,19 @@ between two afternoons of the same day, which is why the sample column names the
 why the repository keeps the claims that did not survive replication next to the ones that
 did.
 
-**[Read the methodology and re-run it yourself →](https://github.com/nodemaven/proxy-benchmark)**
+Every figure above comes out of a command that reads committed rows and sends nothing:
+
+```bash
+git clone https://github.com/nodemaven/proxy-benchmark && cd proxy-benchmark
+pip install -r requirements-ci.txt
+python scripts/analysis/report.py --all     # the pass rates and the denominators
+python scripts/analysis/held.py             # the hold, the warm arm, the filter ladder
+```
+
+**[Read the methodology and re-run it yourself](https://github.com/nodemaven/proxy-benchmark)**
 
 ---
 
-## What we learned building these
-
-Short version of things that cost us time, so they do not cost you any:
-
-- **A working IP is not a passing IP.** A blocked page usually returns HTTP 200 with a stub
-  body. Measure by content, never by status code.
-- **Finding an exit a target will serve is the expensive event.** Making a second query on one
-  that already worked is nearly free. Never do query, new session, query.
-- **Headless Chromium announces itself.** Some targets read one substring in the User-Agent and
-  nothing else: 95/95 pass for engines that omit it, 0/50 for engines that send it.
-- **The failure mode determines the reaction.** Refused before the page means rotate the exit.
-  Served but not parsed means change the config. Confusing the two wastes both.
-
-Full write-ups live in [proxy-benchmark](https://github.com/nodemaven/proxy-benchmark).
-
----
 
 ## Contributing
 
@@ -128,6 +164,7 @@ Security reports: [SECURITY.md](https://github.com/nodemaven/.github/blob/main/S
 [Docs](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=footer) ·
 [X](https://x.com/NodeMaven) ·
 [LinkedIn](https://www.linkedin.com/company/nodemaven) ·
-[Telegram](https://t.me/node_maven)
+[Telegram](https://t.me/node_maven) ·
+[support@nodemaven.com](mailto:support@nodemaven.com)
 
 </div>
