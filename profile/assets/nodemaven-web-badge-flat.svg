@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-      width="232"
+      width="228"
       height="28"
-      viewBox="0 0 232 28"
+      viewBox="0 0 228 28"
      role="img"
      aria-label="Website nodemaven.com">
 
@@ -27,7 +27,7 @@
   <!-- Right link section -->
   <rect x="88"
         y="0"
-        width="144"
+        width="140"
         height="28"
         fill="url(#website-gradient)"/>
 
