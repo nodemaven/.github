@@ -14,11 +14,11 @@
 
 Residential and mobile proxy infrastructure. Open tooling that proves it works.
 
-[![Website](https://img.shields.io/badge/Website-nodemaven.com-0F172A?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge)
-[![Docs](https://img.shields.io/badge/Docs-docs.nodemaven.com-0F172A?style=for-the-badge&logo=readthedocs&logoColor=white)](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge)
-[![Telegram](https://img.shields.io/badge/Telegram-node__maven-0F172A?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/node_maven)
-[![X](https://img.shields.io/badge/X-NodeMaven-0F172A?style=for-the-badge&logo=x&logoColor=white)](https://x.com/NodeMaven)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-NodeMaven-0F172A?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/nodemaven)
+<a href="https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge"><img src="./assets/nodemaven-web-badge-flat.svg" alt="Website" width="228" height="28"></a>
+[![Docs](https://img.shields.io/badge/Docs-docs.nodemaven.com-8B5CF6?style=for-the-badge&logo=readthedocs&logoColor=white)](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge)
+[![Telegram](https://img.shields.io/badge/Telegram-node__maven-229ED9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/node_maven)
+[![X](https://img.shields.io/badge/X-NodeMaven-18181B?style=for-the-badge&logo=x&logoColor=white)](https://x.com/NodeMaven)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-NodeMaven-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/nodemaven)
 
 </div>
 
