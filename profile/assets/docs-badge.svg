@@ -19,7 +19,7 @@
   <rect x="87" y="0" width="1" height="28" fill="#F5F5F5"/>
 
   <!-- Single document icon -->
-  <g transform="translate(9,5)">
+  <g transform="translate(9,3)">
     <!-- paper -->
     <path d="M2 1.5
              H11
@@ -57,7 +57,7 @@
   </g>
 
   <!-- Text -->
-  <text x="27" y="18"
+  <text x="39" y="18"
         font-family="Arial, Helvetica, sans-serif"
         font-size="9.5"
         font-weight="700"
