@@ -10,15 +10,13 @@
 
 # NodeMaven
 
-**Next-Gen Web Operator - the only operator you need**
-
 Residential and mobile proxy infrastructure. Open tooling that proves it works.
 
-[![Website](https://img.shields.io/badge/Website-nodemaven.com-0F172A?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge)
-[![Docs](https://img.shields.io/badge/Docs-docs.nodemaven.com-0F172A?style=for-the-badge&logo=readthedocs&logoColor=white)](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge)
-[![Telegram](https://img.shields.io/badge/Telegram-node__maven-0F172A?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/node_maven)
-[![X](https://img.shields.io/badge/X-NodeMaven-0F172A?style=for-the-badge&logo=x&logoColor=white)](https://x.com/NodeMaven)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-NodeMaven-0F172A?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/nodemaven)
+<a href="https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge"><img src="./assets/website-badge.svg" alt="Website"></a>
+<a href="https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge"><img src="./assets/docs-badge.svg" alt="Docs"></a>
+<a href="https://t.me/node_maven"><img src="./assets/telegram-badge.svg" alt="Telegram"></a>
+<a href="https://x.com/NodeMaven"><img src="./assets/x-badge.svg" alt="X"></a>
+<a href="https://www.linkedin.com/company/nodemaven"><img src="./assets/linkedin-badge.svg" alt="LinkedIn"></a>
 
 </div>
 

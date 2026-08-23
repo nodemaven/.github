@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="236" height="28"
+     viewBox="0 0 236 28"
+     role="img"
+     aria-label="Docs docs.nodemaven.com">
+
+  <defs>
+    <linearGradient id="docs-bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#242323"/>
+      <stop offset="100%" stop-color="#4B494B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge background -->
+  <rect x="0" y="0" width="88" height="28" fill="#242323"/>
+  <rect x="88" y="0" width="148" height="28" fill="url(#docs-bg)"/>
+
+  <!-- White divider -->
+  <rect x="87" y="0" width="1" height="28" fill="#F5F5F5"/>
+
+  <!-- Single document icon -->
+  <g transform="translate(9,5)">
+    <!-- paper -->
+    <path d="M2 1.5
+             H11
+             L16 6
+             V21
+             H2
+             Z"
+          fill="#F4F4F4"
+          stroke="#FFFFFF"
+          stroke-width="0.9"
+          stroke-linejoin="round"/>
+
+    <!-- folded corner -->
+    <path d="M11 1.5
+             V6
+             H16"
+          fill="#CFCFCF"
+          stroke="#FFFFFF"
+          stroke-width="0.9"
+          stroke-linejoin="round"/>
+
+    <!-- document lines -->
+    <path d="M4.5 9
+             H13.5
+             M4.5 11.7
+             H13.5
+             M4.5 14.4
+             H13.5
+             M4.5 17.1
+             H11"
+          fill="none"
+          stroke="#6B6B6B"
+          stroke-width="0.85"
+          stroke-linecap="square"/>
+  </g>
+
+  <!-- Text -->
+  <text x="27" y="18"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="9.5"
+        font-weight="700"
+        letter-spacing="0.8"
+        fill="#FFFFFF">DOCS</text>
+
+  <text x="100" y="18"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="9.5"
+        font-weight="700"
+        letter-spacing="0.55"
+        fill="#FFFFFF">DOCS.NODEMAVEN.COM</text>
+
+  <!-- Outer white border -->
+  <rect x="0.5" y="0.5"
+        width="235" height="27"
+        fill="none"
+        stroke="#F4F4F4"
+        stroke-width="1"/>
+</svg>

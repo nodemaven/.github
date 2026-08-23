@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="236" height="28" viewBox="0 0 236 28" role="img" aria-label="Website nodemaven.com">
+<defs><linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2CCCB7"/><stop offset="55%" stop-color="#2EA8D8"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+<linearGradient id="ng" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4783F2"/><stop offset="1" stop-color="#23E6A8"/></linearGradient></defs>
+<rect width="88" height="28" fill="#555"/><rect x="88" width="148" height="28" fill="url(#wg)"/><rect x="87" width="1" height="28" fill="#666"/>
+<g transform="translate(10 4.7) scale(.105)">
+<path fill="url(#ng)" fill-rule="evenodd" d="M45.0258 90.8567V144.727L0 118.193V42.6147L65.1265 4.8252L70.7549 16.0816L45.8298 30.5542L87.6394 69.9519V16.0816L132.665 42.6147V118.193L68.3427 155.179L61.9104 144.727L86.0314 130.254L45.0258 90.8567ZM12.8645 110.957V49.8511L34.5733 36.9864L106.936 105.329V88.4445L99.6997 81.2081V37.7904L119.8 49.8511V110.957L97.2876 123.822L25.729 55.479V73.168L32.9653 79.6V123.018L12.8645 110.957Z"/>
+<circle cx="66.7332" cy="11.2564" r="11.2564" fill="url(#ng)"/><circle cx="66.7332" cy="148.744" r="11.2564" fill="url(#ng)"/></g>
+<text x="27" y="18" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" letter-spacing=".65" fill="#2EA8D8">WEBSITE</text>
+<text x="100" y="18" font-family="Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" letter-spacing=".55" fill="#fff">NODEMAVEN.COM</text></svg>
