@@ -6,17 +6,17 @@
 
   <defs>
     <linearGradient id="docs-bg" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#242323"/>
-      <stop offset="100%" stop-color="#4B494B"/>
+      <stop offset="0%" stop-color="#2d1d42" stop-opacity="1.0"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="1.0"/>
     </linearGradient>
   </defs>
 
   <!-- Badge background -->
   <rect x="0" y="0" width="88" height="28" fill="#242323"/>
+  <rect x="88" y="0" width="148" height="28" fill="#1E1E1E"/>
   <rect x="88" y="0" width="148" height="28" fill="url(#docs-bg)"/>
 
-  <!-- White divider -->
-  <rect x="87" y="0" width="1" height="28" fill="#F5F5F5"/>
+  <rect x="87" y="0" width="1" height="28" fill="#1a1a2e"/>
 
   <!-- Single document icon -->
   <g transform="translate(9,3)">
@@ -62,19 +62,19 @@
         font-size="9.5"
         font-weight="700"
         letter-spacing="0.8"
-        fill="#FFFFFF">DOCS</text>
+        fill="#D4D4D8">DOCS</text>
 
   <text x="100" y="18"
         font-family="Arial, Helvetica, sans-serif"
         font-size="9.5"
         font-weight="700"
         letter-spacing="0.55"
-        fill="#FFFFFF">DOCS.NODEMAVEN.COM</text>
+        fill="#D4D4D8">DOCS.NODEMAVEN.COM</text>
 
   <!-- Outer white border -->
   <rect x="0.5" y="0.5"
         width="235" height="27"
         fill="none"
-        stroke="#F4F4F4"
+        stroke="#1a1a2e"
         stroke-width="1"/>
 </svg>
