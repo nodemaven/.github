@@ -73,19 +73,38 @@ which is why the harness records one on every row.
 
 ### SDKs
 
-| Package | Registry | Status |
+<!-- The column is the name you install, not the name of the repository - those differ
+     for Python (`nodemaven` on PyPI, `nodemaven-python` on GitHub) and getting it
+     wrong sends a reader to a `pip install` that fails.
+     Status is read off the registry, not off intent. Checked 2026-08-25:
+     pypi.org/project/nodemaven answers 200 with 0.1.1, and `pip install nodemaven`
+     into a clean venv succeeded, so "not published yet" - which this table said
+     until today - was false for the Python row.
+     The repository behind it is still internal and answers 404 anonymously, so the
+     link goes to PyPI, which is public, rather than to GitHub, which is not. -->
+
+| Install | Registry | Status |
 |---|---|---|
-| `nodemaven-python` | PyPI | In development |
-| `nodemaven-node` | npm | Planned |
-| `nodemaven-go` | Go module | Planned |
-| `nodemaven-rust` | crates.io | Planned |
+| [`nodemaven`](https://pypi.org/project/nodemaven/) | PyPI | **0.1.1, published** |
+| `nodemaven-node` | npm | Not started |
+| `nodemaven-go` | Go module | Not started |
+| `nodemaven-rust` | crates.io | Not started |
 
-None of these are published yet, so none of them are linked - a name in this table becomes
-a link on the day the repository is public, and not before.
+Only the Python one exists. Its source is not public yet, so the row links to the package
+rather than to a repository; the three below it are names, not work in progress.
 
-Every SDK covers the same ground: typed connection parameters with client-side validation,
-browser adapters that handle proxy auth for you, traffic-saving presets, and rotation with a
-circuit breaker so a bad run does not make itself worse.
+<!-- This paragraph used to promise "browser adapters that handle proxy auth for you,
+     traffic-saving presets, and rotation with a circuit breaker". The shipped Python
+     SDK does none of those, and refuses the last one on purpose: its README documents
+     that past six consecutive failures the next attempt succeeds 0.5% of the time,
+     measured over 1464 attempts, so automatic retry spends a user's pool on their
+     behalf. An org page promising retry above a library whose headline is that it
+     does not retry is the first thing a hostile reader would catch. -->
+
+What ships today builds the gateway username and validates it before anything is sent:
+an unknown parameter name is answered `200` with the setting silently dropped, so the
+only place that mistake can be caught is client-side. It opens no socket, holds no
+session and retries nothing - the HTTP client stays yours.
 <!--
 ### Tools
 
