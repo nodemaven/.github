@@ -1,10 +1,11 @@
 <div align="center">
 
-<!-- The logo is the one thing in this file that is not text, and the asset is not
-     committed yet. Drop a transparent PNG or SVG at profile/assets/nodemaven-logo.png
-     (see profile/assets/README.md for size) and delete the comment markers around the
-     two lines below. A missing image renders as a broken icon on the organization
-     landing page, which is why it is commented out rather than left hopeful. -->
+<!-- The logo asset is committed and rendering. Checked against the live page on
+     2026-08-25: the relative src resolves to
+     /nodemaven/.github/raw/main/profile/assets/nodemaven-head.png and serves 200.
+     Keep the src relative - it survives a fork, an absolute raw.githubusercontent
+     URL does not. The wordmark and the slogan are pixels inside this file, so
+     changing either means re-cutting the asset and updating alt in the same commit. -->
 
 <a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/nodemaven-head.png" alt="NodeMaven"></a>
 
@@ -30,10 +31,9 @@ Residential and mobile proxy infrastructure. Open tooling that proves it works.
 ## What is here
 
 Two kinds of repository. **SDKs** wrap the gateway in one language each, so you are not
-hand-building proxy usernames or wiring auth into a browser. **Tools** are the things we
-built to answer our own questions and had no reason to keep private - chief among them a
-benchmark harness that measures block rates against live targets for any provider,
-including ours.
+hand-building proxy usernames or wiring auth into a browser. **Tools** answer questions that
+came up internally and had no reason to stay private - chief among them a benchmark harness
+that measures block rates against live targets for any provider, NodeMaven included.
 
 | I want to... | Go to |
 |---|---|
@@ -58,12 +58,14 @@ print(r.json()["ip"])
 ```
 
 `sid` holds one exit across requests, `ttl` says for how long. The sticky key is the whole
-parameter set rather than `sid` alone, which is the kind of thing you find by probing a
-gateway rather than by reading its documentation - so we probed ours and
-[wrote down what it answers](https://github.com/nodemaven/proxy-benchmark/blob/main/CLAUDE.md#measured-gateway-behaviour),
-including the seven malformed inputs and the seven different replies, none of which names
-the cause. One of them is a 200 with your setting silently dropped, so a run can complete
-while every row claims a parameter that was never applied.
+parameter set rather than `sid` alone - change any parameter and the exit changes with it,
+which is the kind of thing probing a gateway tells you and reading its documentation does
+not.
+
+Seven malformed inputs produce seven different replies, and none of them names the cause.
+One is a 200 with the setting silently dropped, so a run completes while every row claims a
+parameter that was never applied. Checking the exit address per request is the only defence,
+which is why the harness records one on every row.
 
 ---
 
@@ -94,61 +96,77 @@ circuit breaker so a bad run does not make itself worse.
 [![gate](https://img.shields.io/github/actions/workflow/status/nodemaven/proxy-benchmark/ci.yml?style=flat-square&label=gate)](https://github.com/nodemaven/proxy-benchmark/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark/blob/main/LICENSE)
 [![python](https://img.shields.io/badge/python-3.11%20%7C%203.13-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark)
-[![rows](https://img.shields.io/badge/rows-3%2C701%20published-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark/tree/main/data/runs)
+[![rows](https://img.shields.io/badge/rows-12%2C173%20published-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark/tree/main/data/runs)
 -->
+
+<!-- Uncomment the two blocks above on the day proxy-benchmark becomes public, and not
+     before. Measured anonymously on 2026-08-25, github.com/nodemaven/proxy-benchmark
+     answers 404 to a logged-out visitor because the repository is internal - the same 404
+     it gave when the repository did not exist at all. Creating it did not make these links
+     work. The row count in the badge above was re-counted on 2026-08-25: 12,173 rows
+     across data/runs/, where the badge previously said 3,701. -->
 ---
 
-## We publish our numbers, including the ones we lose on
+## The numbers, including the ones that go against us
 
-Most proxy benchmarks are marketing. Ours is a repository you can run: every verdict is
-read off the response body rather than the status code, every row lands in JSONL you can
-re-read offline, and the runner has never been told which provider it is talking to - it
-takes a host, a port and a username out of the environment, so pointing it at a
-competitor's gateway, or at the proxies you already own, is a credentials change rather
-than a code change.
+Every verdict is read off the response body rather than the status code, every row lands in
+JSONL that can be re-read offline, and the runner is never told which provider it is talking
+to: it takes a host, a port and a username out of the environment. Pointing it at a
+competitor's gateway, or at proxies you already own, is a credentials change and not a code
+change.
 
 Each question below is a matrix whose arms are interleaved inside one time window, with a
-fresh exit per probe. Two arms run at 10:00 and 14:00 would measure the hour rather than
-the thing under test, so the runner goes round-robin across cells and never in sequence.
+fresh exit per probe. Two arms run at 10:00 and 14:00 would measure the hour rather than the
+thing under test, so the runner goes round-robin across cells and never in sequence.
 
-| What we tested | Result | Sample |
+| Question | Answer | Denominator, and the command that re-derives it |
 |---|---|---|
-| Does a proven exit keep working? | **Yes. 108/109 held queries pass, 99%** | 120 identities, one 1 h 54 window |
-| Does warming an exit first help? | **No effect.** 32% vs 30%, Fisher p = 1.0 | same run, both arms interleaved |
-| Does pinning `country=us` help? | **No, it costs you.** 13% vs 52% for every other setting, p = 1.5e-05 | 225 attempts over two windows |
-| Is the browser the bottleneck on Google? | **No, it is the address.** Of the pages Google served, the script-running engines parsed every one: patchright 309/309, zendriver 169/169 | every run on disk |
+| Does a proven exit keep working? | **Yes. 108 of 109 held queries passed, 99%** | one run, 120 identities, 1 h 54 min: `held.py --run data/runs/probehold_20260813T202606Z.jsonl` |
+| Does warming an exit first help? | **No. 32% against 30%**, n = 60 and 60 | same run, arms interleaved, same command |
+| Does pinning `country=us` help? | **No, it costs.** 13% served against 44-62% for `de`, `gb`, `any` and `ru`. Pooled, 5/26 against 53/102, Fisher exact **p = 0.0036** | 225 attempts over two windows |
+| Is the browser the bottleneck on Google? | **No, the address is.** Of the pages Google served, Patchright parsed **108 of 108** | every run on disk: `report.py --all`, the `google_serp` block |
+| Does hardening a browser help on Amazon? | **Not on this evidence.** An unmodified Chromium scored **96%**, the best of the eight engines tried; the most heavily patched one scored 63% | 7627 attempts, 130 h: `report.py data/runs/benchmark_20260819T055927Z.jsonl` |
 | Is there a best anti-detect framework? | **No. It is a diagonal** - the winner changes with the target | every run on disk |
 
-The `country=us` row is about our own product, and it stays in the table. A benchmark that
-only shows wins is worth nothing to the person forking it.
+Two of those rows are losses. The `country=us` row is about a NodeMaven setting and it stays
+in the table. The Amazon row says the anti-detect tooling this harness exists to compare did
+not beat a stock browser on that target, which is not the result anyone here wanted, and it
+replaced an earlier table that said the opposite - the correction is in the repository next
+to the claim it replaced.
 
-Two caveats we would want if we were reading someone else's table. The hold figure is
-conditional and censored: every held query follows a probe the target already served, and
-a series stops at its first refusal, so later positions are drawn from survivors. And every
-rate here is a reading of the hours it was taken in - one target's yield moved 17 points
-between two afternoons of the same day, which is why the sample column names the window and
-why the repository keeps the claims that did not survive replication next to the ones that
-did.
+Three caveats worth having if this were someone else's table:
 
-Every figure above comes out of a command that reads committed rows and sends nothing:
+- **The hold figure is conditional and censored.** Every held query follows a probe the
+  target already served, and a series stops at its first refusal, so later positions are
+  drawn from survivors.
+- **Every rate is a reading of the hours it was taken in.** One target's yield moved 17
+  points between two afternoons of the same day. That is why the denominator column names
+  the window, and why claims that did not survive replication are kept beside the ones that
+  did.
+- **Pooled is the weaker reading.** `--all` merges runs from different weeks into a number
+  belonging to neither. Where a row above names a single run, that is deliberate and the
+  pooled figure differs.
+
+Every figure above comes out of a command that reads committed rows and sends nothing - no
+account, no gateway, no traffic. The repository is internal while the code is reviewed, so
+this is what checking one of them will look like rather than something that runs today:
 
 ```bash
 git clone https://github.com/nodemaven/proxy-benchmark && cd proxy-benchmark
 pip install -r requirements-ci.txt
-python scripts/analysis/report.py --all     # the pass rates and the denominators
-python scripts/analysis/held.py             # the hold, the warm arm, the filter ladder
+python scripts/analysis/report.py --all
+python scripts/analysis/held.py --run data/runs/probehold_20260813T202606Z.jsonl
 ```
-
-**[Read the methodology and re-run it yourself](https://github.com/nodemaven/proxy-benchmark)**
 
 ---
 
 
 ## Contributing
 
-Issues and pull requests are welcome on every repository here, including ones that tell us our
-numbers are wrong. If you can reproduce a result that contradicts ours, open an issue with the
-raw rows - that is the most useful thing you can send us.
+Issues and pull requests are welcome on every repository here, including the ones that say a
+published number is wrong. A result that contradicts one of these tables, sent with the raw
+rows behind it, is the most useful thing this organization can receive - the repository
+already keeps several corrections of its own claims, and one more costs nothing.
 
 See [CONTRIBUTING.md](https://github.com/nodemaven/.github/blob/main/CONTRIBUTING.md).
 
