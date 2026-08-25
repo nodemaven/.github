@@ -6,13 +6,13 @@
      two lines below. A missing image renders as a broken icon on the organization
      landing page, which is why it is commented out rather than left hopeful. -->
 
-<a href="https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=logo"><img src="./assets/nodemaven-head.png" alt="NodeMaven"></a>
+<a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/nodemaven-head.png" alt="NodeMaven"></a>
 
 # NodeMaven
 
 Residential and mobile proxy infrastructure. Open tooling that proves it works.
 
-<a href="https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge"><img src="./assets/website-badge.svg" alt="Website"></a>
+<a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/website-badge.svg" alt="Website"></a>
 <a href="https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge"><img src="./assets/docs-badge.svg" alt="Docs"></a>
 <a href="https://t.me/node_maven"><img src="./assets/telegram-badge.svg" alt="Telegram"></a>
 <a href="https://x.com/NodeMaven"><img src="./assets/x-badge.svg" alt="X"></a>
@@ -26,7 +26,7 @@ Residential and mobile proxy infrastructure. Open tooling that proves it works.
      Five social badges in one style is the shape an org landing page reads best in. -->
 
 ---
-
+<!--
 ## What is here
 
 Two kinds of repository. **SDKs** wrap the gateway in one language each, so you are not
@@ -43,7 +43,7 @@ including ours.
 | Work out why a target is blocking me | [The three layers](https://github.com/nodemaven/proxy-benchmark#what-it-measures) |
 | Measure my own proxies, ours or anybody's | [proxy-benchmark](https://github.com/nodemaven/proxy-benchmark) |
 | Check a number we published, offline, without an account | [Reproduce these numbers](https://github.com/nodemaven/proxy-benchmark#reproduce-these-numbers) |
-
+-->
 ## What a request looks like
 
 The gateway takes its parameters in the username, separated by hyphens, so any HTTP client
@@ -84,7 +84,7 @@ a link on the day the repository is public, and not before.
 Every SDK covers the same ground: typed connection parameters with client-side validation,
 browser adapters that handle proxy auth for you, traffic-saving presets, and rotation with a
 circuit breaker so a bad run does not make itself worse.
-
+<!--
 ### Tools
 
 | Repository | What it does | Language |
@@ -95,7 +95,7 @@ circuit breaker so a bad run does not make itself worse.
 [![license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark/blob/main/LICENSE)
 [![python](https://img.shields.io/badge/python-3.11%20%7C%203.13-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark)
 [![rows](https://img.shields.io/badge/rows-3%2C701%20published-blue?style=flat-square)](https://github.com/nodemaven/proxy-benchmark/tree/main/data/runs)
-
+-->
 ---
 
 ## We publish our numbers, including the ones we lose on
