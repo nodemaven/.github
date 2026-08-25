@@ -158,7 +158,7 @@ Security reports: [SECURITY.md](https://github.com/nodemaven/.github/blob/main/S
 
 <div align="center">
 
-[nodemaven.com](https://nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=footer) ·
+[nodemaven.com](https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme) ·
 [Docs](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=footer) ·
 [X](https://x.com/NodeMaven) ·
 [LinkedIn](https://www.linkedin.com/company/nodemaven) ·
