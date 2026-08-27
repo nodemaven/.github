@@ -27,45 +27,29 @@ Residential and mobile proxy infrastructure. Open tooling that proves it works.
      Five social badges in one style is the shape an org landing page reads best in. -->
 
 ---
-<!--
-## What is here
 
-Two kinds of repository. **SDKs** wrap the gateway in one language each, so you are not
-hand-building proxy usernames or wiring auth into a browser. **Tools** answer questions that
-came up internally and had no reason to stay private - chief among them a benchmark harness
-that measures block rates against live targets for any provider, NodeMaven included.
+## What this is
 
-| I want to... | Go to |
-|---|---|
-| Make my first request through a proxy in under 10 minutes | [Quickstart](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=quickstart) |
-| Never have seen a terminal before and still get a row of data | [proxy-benchmark quickstart](https://github.com/nodemaven/proxy-benchmark/blob/main/docs/quickstart.md) |
-| Use NodeMaven from my language | [SDKs](#sdks) |
-| Work out why a target is blocking me | [The three layers](https://github.com/nodemaven/proxy-benchmark#what-it-measures) |
-| Measure my own proxies, ours or anybody's | [proxy-benchmark](https://github.com/nodemaven/proxy-benchmark) |
-| Check a number we published, offline, without an account | [Reproduce these numbers](https://github.com/nodemaven/proxy-benchmark#reproduce-these-numbers) |
--->
-## What a request looks like
+NodeMaven runs a residential and mobile proxy gateway. Country, city, ISP, the sticky
+session and how long it holds are set in the username rather than through an API, so any
+HTTP client in any language reaches it without a library.
 
-The gateway takes its parameters in the username, separated by hyphens, so any HTTP client
-in any language can reach it without a library:
+This organization is the code side of that: an SDK per language, each going to that
+language's own registry as it ships. Product documentation and sign-up are on
+[nodemaven.com](https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme) - what
+is here is source, and none of it needs an account to read.
 
-```python
-import requests
-
-proxy = "http://<login>-country-us-sid-abc123-ttl-10m:<password>@gate.nodemaven.com:8080"
-r = requests.get("https://ipinfo.io/json", proxies={"http": proxy, "https": proxy})
-print(r.json()["ip"])
-```
-
-`sid` holds one exit across requests, `ttl` says for how long. The sticky key is the whole
-parameter set rather than `sid` alone - change any parameter and the exit changes with it,
-which is the kind of thing probing a gateway tells you and reading its documentation does
-not.
-
-Seven malformed inputs produce seven different replies, and none of them names the cause.
-One is a 200 with the setting silently dropped, so a run completes while every row claims a
-parameter that was never applied. Checking the exit address per request is the only defence,
-which is why the harness records one on every row.
+<!-- This section used to open with a request in Python and three paragraphs on how the
+     gateway answers a malformed username. Both are true and both belong in the docs and in
+     the SDK README, not on a landing page: a reader arriving here is deciding whether this
+     organization is worth their time, and a code block is an answer to a question they have
+     not asked yet.
+     The same call removed a results table that stood below Repositories - six questions with
+     their denominators and the commands that re-derive them. Nothing was lost: every one of
+     those numbers, its denominator and the command that re-derives it is in the README of
+     the repository that produced it, which is where a figure can sit next to the rows behind
+     it. Do not paste the table back here; if the front page should carry those numbers, it
+     carries one link to them, and only once that repository is public. -->
 
 ---
 
@@ -126,66 +110,12 @@ session and retries nothing - the HTTP client stays yours.
      across data/runs/, where the badge previously said 3,701. -->
 ---
 
-## The numbers, including the ones that go against us
-
-Every verdict is read off the response body rather than the status code, every row lands in
-JSONL that can be re-read offline, and the runner is never told which provider it is talking
-to: it takes a host, a port and a username out of the environment. Pointing it at a
-competitor's gateway, or at proxies you already own, is a credentials change and not a code
-change.
-
-Each question below is a matrix whose arms are interleaved inside one time window, with a
-fresh exit per probe. Two arms run at 10:00 and 14:00 would measure the hour rather than the
-thing under test, so the runner goes round-robin across cells and never in sequence.
-
-| Question | Answer | Denominator, and the command that re-derives it |
-|---|---|---|
-| Does a proven exit keep working? | **Yes. 108 of 109 held queries passed, 99%** | one run, 120 identities, 1 h 54 min: `held.py --run data/runs/probehold_20260813T202606Z.jsonl` |
-| Does warming an exit first help? | **No. 32% against 30%**, n = 60 and 60 | same run, arms interleaved, same command |
-| Does pinning `country=us` help? | **No, it costs.** 13% served against 44-62% for `de`, `gb`, `any` and `ru`. Pooled, 5/26 against 53/102, Fisher exact **p = 0.0036** | 225 attempts over two windows |
-| Is the browser the bottleneck on Google? | **No, the address is.** Of the pages Google served, Patchright parsed **108 of 108** | every run on disk: `report.py --all`, the `google_serp` block |
-| Does hardening a browser help on Amazon? | **Not on this evidence.** An unmodified Chromium scored **96%**, the best of the eight engines tried; the most heavily patched one scored 63% | 7627 attempts, 130 h: `report.py data/runs/benchmark_20260819T055927Z.jsonl` |
-| Is there a best anti-detect framework? | **No. It is a diagonal** - the winner changes with the target | every run on disk |
-
-Two of those rows are losses. The `country=us` row is about a NodeMaven setting and it stays
-in the table. The Amazon row says the anti-detect tooling this harness exists to compare did
-not beat a stock browser on that target, which is not the result anyone here wanted, and it
-replaced an earlier table that said the opposite - the correction is in the repository next
-to the claim it replaced.
-
-Three caveats worth having if this were someone else's table:
-
-- **The hold figure is conditional and censored.** Every held query follows a probe the
-  target already served, and a series stops at its first refusal, so later positions are
-  drawn from survivors.
-- **Every rate is a reading of the hours it was taken in.** One target's yield moved 17
-  points between two afternoons of the same day. That is why the denominator column names
-  the window, and why claims that did not survive replication are kept beside the ones that
-  did.
-- **Pooled is the weaker reading.** `--all` merges runs from different weeks into a number
-  belonging to neither. Where a row above names a single run, that is deliberate and the
-  pooled figure differs.
-
-Every figure above comes out of a command that reads committed rows and sends nothing - no
-account, no gateway, no traffic. The repository is internal while the code is reviewed, so
-this is what checking one of them will look like rather than something that runs today:
-
-```bash
-git clone https://github.com/nodemaven/proxy-benchmark && cd proxy-benchmark
-pip install -r requirements-ci.txt
-python scripts/analysis/report.py --all
-python scripts/analysis/held.py --run data/runs/probehold_20260813T202606Z.jsonl
-```
-
----
-
-
 ## Contributing
 
 Issues and pull requests are welcome on every repository here, including the ones that say a
-published number is wrong. A result that contradicts one of these tables, sent with the raw
-rows behind it, is the most useful thing this organization can receive - the repository
-already keeps several corrections of its own claims, and one more costs nothing.
+number we published is wrong. A result that contradicts one of ours, sent with the raw rows
+behind it, is the most useful thing this organization can receive - our repositories already
+keep several corrections of our own claims, and one more costs nothing.
 
 See [CONTRIBUTING.md](https://github.com/nodemaven/.github/blob/main/CONTRIBUTING.md).
 
