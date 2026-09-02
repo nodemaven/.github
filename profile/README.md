@@ -7,11 +7,11 @@
      URL does not. The wordmark and the slogan are pixels inside this file, so
      changing either means re-cutting the asset and updating alt in the same commit. -->
 
-<a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/nodemaven-head.png" alt="NodeMaven"></a>
+<a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/nodemaven-banner.png" alt="NodeMaven"></a>
 
 # NodeMaven
 
-Residential and mobile proxy infrastructure. Open tooling that proves it works.
+Residential and mobile proxy infrastructure. Making scraping accessible to every Developer.
 
 <a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/website-badge.svg" alt="Website"></a>
 <a href="https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=badge"><img src="./assets/docs-badge.svg" alt="Docs"></a>
