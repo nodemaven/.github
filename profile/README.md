@@ -7,7 +7,7 @@
      URL does not. The wordmark and the slogan are pixels inside this file, so
      changing either means re-cutting the asset and updating alt in the same commit. -->
 
-<a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/nodemaven-banner.png" alt="NodeMaven"></a>
+<a href="https://nodemaven.com/?utm_term=github&utm_content=nodemaven_readme"><img src="./assets/banner.png" alt="NodeMaven"></a>
 
 # NodeMaven
 
