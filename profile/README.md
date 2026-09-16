@@ -69,10 +69,10 @@ is here is source, and none of it needs an account to read.
 
 | Install | Registry | Status |
 |---|---|---|
-| [`nodemaven`](https://pypi.org/project/nodemaven/) | PyPI | **0.1.1, published** |
+| [`nodemaven-python`](https://pypi.org/project/nodemaven/) | PyPI | **0.1.4, published** |
 | `nodemaven-node` | npm | Not started |
 | `nodemaven-go` | Go module | Not started |
-| `nodemaven-rust` | crates.io | Not started |
+| [`nodemaven-rust`](https://crates.io/crates/nodemaven) | crates.io | **0.1.1, published** |
 
 Only the Python one exists. Its source is not public yet, so the row links to the package
 rather than to a repository; the three below it are names, not work in progress.
