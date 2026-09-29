@@ -14,7 +14,7 @@
 <a href="https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=docs_badge">
   <img src="./assets/docs-badge.svg" alt="Docs">
 </a>
-<a href="https://t.me/node_maven">
+<a href="https://t.me/NodeMavenTG">
   <img src="./assets/telegram-badge.svg" alt="Telegram">
 </a>
 <a href="https://x.com/NodeMaven">
