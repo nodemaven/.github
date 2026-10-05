@@ -34,8 +34,8 @@
 
 | Repository | Registry | What it does |
 |---|---|---|
-| [`nodemaven-python`](https://github.com/nodemaven/nodemaven-python) | [PyPI](https://pypi.org/project/nodemaven/) | Python SDK for building and validating proxy configuration before a request is sent |
-| [`nodemaven-rust`](https://github.com/nodemaven/nodemaven-rust) | [crates.io](https://crates.io/crates/nodemaven) | Rust SDK with a builder API, typed errors, provider definitions, and connection checks |
+| [`nodemaven-python`](https://github.com/nodemaven/nodemaven-python) | [PyPI](https://pypi.org/project/nodemaven/) | Python SDK: builds and validates the gateway username, checks a proxy, and calls the account API |
+| [`nodemaven-rust`](https://github.com/nodemaven/nodemaven-rust) | [crates.io](https://crates.io/crates/nodemaven) | Rust SDK: a builder with typed errors, provider definitions, connection checks, and an account API client |
 
 ```bash
 # Python
@@ -45,7 +45,18 @@ pip install nodemaven
 cargo add nodemaven
 ```
 
-Both SDKs keep the HTTP client under your control. They build the proxy configuration, validate what can be checked locally, and hand the result to the client or browser you already use.
+Both SDKs keep the HTTP client under your control. They build the proxy configuration, validate what can be checked locally, and hand the result to the client or browser you already use. Each also has a client for the account API: sub-users, IP whitelist, usage statistics, and the location catalogue.
+
+### Google Browser Scraper
+
+[`google-browser-scraper`](https://github.com/nodemaven/google-browser-scraper) gets Google search results from a real browser through your own sticky proxy, from any provider.
+
+It warms the proxy session with ordinary browsing, types the query into Google's search box, and checks whether Google served results or refused before parsing. Captchas and blocks are reported as such, never as an empty result. It runs as a CLI, a SerpApi-style HTTP API, or an MCP server.
+
+```bash
+pip install google-browser-scraper
+patchright install chromium
+```
 
 ### Proxy Benchmark
 
@@ -119,7 +130,7 @@ Security reports: [SECURITY.md](https://github.com/nodemaven/.github/blob/main/S
 [crates.io](https://crates.io/crates/nodemaven) ·
 [X](https://x.com/NodeMaven) ·
 [LinkedIn](https://www.linkedin.com/company/nodemaven) ·
-[Telegram](https://t.me/node_maven) ·
+[Telegram](https://t.me/NodeMavenTG) ·
 [support@nodemaven.com](mailto:support@nodemaven.com)
 
 </div>
