@@ -49,9 +49,9 @@ Both SDKs keep the HTTP client under your control. They build the proxy configur
 
 ### Google Browser Scraper
 
-[`google-browser-scraper`](https://github.com/nodemaven/google-browser-scraper) gets Google search results from a real browser through your own sticky proxy, from any provider.
+[`google-browser-scraper`](https://github.com/nodemaven/google-browser-scraper) is a self-hosted SERP API alternative: Google search results from a real browser through your own sticky proxy, from any provider.
 
-It warms the proxy session with ordinary browsing, types the query into Google's search box, and checks whether Google served results or refused before parsing. Captchas and blocks are reported as such, never as an empty result. It runs as a CLI, a SerpApi-style HTTP API, or an MCP server.
+It warms the proxy session with ordinary browsing, opens Google's results page, and checks whether Google served results or refused before parsing. Captchas and blocks are reported as such, never as an empty result. It runs as a CLI, a Python library, a local HTTP API, an MCP server, or a Docker image.
 
 ```bash
 pip install google-browser-scraper
