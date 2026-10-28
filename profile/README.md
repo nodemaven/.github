@@ -8,6 +8,9 @@
 
 **Residential and mobile proxy infrastructure with open-source SDKs, benchmarks, and tooling for scraping and browser automation.**
 
+<a href="https://dashboard.nodemaven.com/accounts/signup/?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=promo_badge">
+  <img src="./assets/promo-badge.svg" alt="2 GB free with code GITHUB">
+</a>
 <a href="https://nodemaven.com/?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=website_badge">
   <img src="./assets/website-badge.svg" alt="Website">
 </a>
@@ -118,7 +121,8 @@ The SDKs are optional. Their role is to make that configuration safer and easier
 For product setup, authentication, targeting options, and account features, use the
 [NodeMaven documentation](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=product_docs).
 
-No account yet? [Sign up](https://dashboard.nodemaven.com/accounts/signup/?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=signup_promo) and enter the code **GITHUB** for 2 GB of free traffic, once per account.
+> [!TIP]
+> 🎁 **2 GB of free traffic.** No account yet? [Sign up](https://dashboard.nodemaven.com/accounts/signup/?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=signup_promo) and enter the code **GITHUB**. Once per account.
 
 ---
 
