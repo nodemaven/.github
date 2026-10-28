@@ -118,6 +118,8 @@ The SDKs are optional. Their role is to make that configuration safer and easier
 For product setup, authentication, targeting options, and account features, use the
 [NodeMaven documentation](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=product_docs).
 
+No account yet? [Sign up](https://dashboard.nodemaven.com/accounts/signup/?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=signup_promo) and enter the code **GITHUB** for 2 GB of free traffic, once per account.
+
 ---
 
 ## Engineering principles
