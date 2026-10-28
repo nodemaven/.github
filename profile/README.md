@@ -36,6 +36,7 @@
 |---|---|---|
 | [`nodemaven-python`](https://github.com/nodemaven/nodemaven-python) | [PyPI](https://pypi.org/project/nodemaven/) | Python SDK: builds and validates the gateway username, checks a proxy, and calls the account API |
 | [`nodemaven-rust`](https://github.com/nodemaven/nodemaven-rust) | [crates.io](https://crates.io/crates/nodemaven) | Rust SDK: a builder with typed errors, provider definitions, connection checks, and an account API client |
+| [`nodemaven-go`](https://github.com/nodemaven/nodemaven-go) | [pkg.go.dev](https://pkg.go.dev/github.com/nodemaven/nodemaven-go) | Go SDK: builds and validates the gateway username, checks a proxy, and calls the account API |
 
 ```bash
 # Python
@@ -43,9 +44,27 @@ pip install nodemaven
 
 # Rust
 cargo add nodemaven
+
+# Go
+go get github.com/nodemaven/nodemaven-go
 ```
 
-Both SDKs keep the HTTP client under your control. They build the proxy configuration, validate what can be checked locally, and hand the result to the client or browser you already use. Each also has a client for the account API: sub-users, IP whitelist, usage statistics, and the location catalogue.
+The SDKs keep the HTTP client under your control. They build the proxy configuration, validate what can be checked locally, and hand the result to the client or browser you already use. Each also has a client for the account API: sub-users, IP whitelist, usage statistics, and the location catalogue.
+
+### AI agents
+
+[`nodemaven-mcp`](https://github.com/nodemaven/nodemaven-mcp) is an MCP server that connects Claude, Cursor and other MCP clients to a NodeMaven account: geo-targeted proxy strings with sticky sessions, connection checks, a site check through the proxy, locations, traffic usage, sub-users and whitelisted IPs. Read-only by default; the tools that change the account are switched on explicitly. On [PyPI](https://pypi.org/project/nodemaven-mcp/) and the official MCP Registry.
+
+```bash
+uvx nodemaven-mcp   # with NODEMAVEN_APIKEY set
+```
+
+[`skills`](https://github.com/nodemaven/skills) is a Claude Code plugin: skills for proxy setup in code, the SDKs, the account API, Google scraping, proxy benchmarking and troubleshooting, with the MCP server included.
+
+```text
+/plugin marketplace add nodemaven/skills
+/plugin install nodemaven@nodemaven
+```
 
 ### Google Browser Scraper
 
@@ -56,6 +75,9 @@ It warms the proxy session with ordinary browsing, opens Google's results page, 
 ```bash
 pip install google-browser-scraper
 patchright install chromium
+
+# or
+docker run --rm ghcr.io/nodemaven/google-browser-scraper doctor
 ```
 
 ### Proxy Benchmark
@@ -89,7 +111,7 @@ NodeMaven exposes residential and mobile proxies through a standard proxy gatewa
 
 Targeting and session configuration are encoded in the proxy username, so the gateway can be used directly from tools and clients such as:
 
-`cURL` · `requests` · `httpx` · `reqwest` · `Playwright` · `Patchright` · `Puppeteer` · Chromium-based automation
+`cURL` · `requests` · `httpx` · `reqwest` · Go `net/http` · `Playwright` · `Patchright` · `Puppeteer` · Chromium-based automation
 
 The SDKs are optional. Their role is to make that configuration safer and easier to work with in code, while leaving requests, browser lifecycle, connection pooling, retries, and application logic to your existing stack.
 
@@ -128,6 +150,7 @@ Security reports: [SECURITY.md](https://github.com/nodemaven/.github/blob/main/S
 [Documentation](https://docs.nodemaven.com?utm_source=github&utm_medium=org_profile&utm_campaign=github_org&utm_content=footer) ·
 [PyPI](https://pypi.org/project/nodemaven/) ·
 [crates.io](https://crates.io/crates/nodemaven) ·
+[pkg.go.dev](https://pkg.go.dev/github.com/nodemaven/nodemaven-go) ·
 [X](https://x.com/NodeMaven) ·
 [LinkedIn](https://www.linkedin.com/company/nodemaven) ·
 [Telegram](https://t.me/NodeMavenTG) ·
