@@ -69,18 +69,18 @@ uvx nodemaven-mcp   # with NODEMAVEN_APIKEY set
 /plugin install nodemaven@nodemaven
 ```
 
-### Google Browser Scraper
+### gserp
 
-[`google-browser-scraper`](https://github.com/nodemaven/google-browser-scraper) is a self-hosted SERP API alternative: Google search results from a real browser through your own sticky proxy, from any provider.
+[`gserp`](https://github.com/nodemaven/gserp) is a self-hosted Google SERP API: Google search results from a real browser through your own sticky proxy, from any provider.
 
-It warms the proxy session with ordinary browsing, opens Google's results page, and checks whether Google served results or refused before parsing. Captchas and blocks are reported as such, never as an empty result. It runs as a CLI, a Python library, a local HTTP API, an MCP server, or a Docker image.
+It warms the first proxy session with ordinary browsing and starts later ones from the cookies Google already accepts, opens Google's results page, and checks whether Google served results or refused before parsing. Captchas and blocks are reported as such, never as an empty result. It runs as a CLI, a Python library, a local HTTP API, an MCP server, or a Docker image.
 
 ```bash
-pip install google-browser-scraper
+pip install gserp
 patchright install chromium
 
 # or
-docker run --rm ghcr.io/nodemaven/google-browser-scraper doctor
+docker run --rm ghcr.io/nodemaven/gserp doctor
 ```
 
 ### Proxy Benchmark
