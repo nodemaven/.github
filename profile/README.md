@@ -69,18 +69,18 @@ uvx nodemaven-mcp   # with NODEMAVEN_APIKEY set
 /plugin install nodemaven@nodemaven
 ```
 
-### gserp
+### SERP Maven
 
-[`gserp`](https://github.com/nodemaven/gserp) is a self-hosted Google SERP API: Google search results from a real browser through your own sticky proxy, from any provider.
+[`serpmaven`](https://github.com/nodemaven/serpmaven) (SERP Maven) is a self-hosted Google SERP API: Google search results from a real browser through your own sticky proxy, from any provider.
 
 It warms the first proxy session with ordinary browsing and starts later ones from the cookies Google already accepts, opens Google's results page, and checks whether Google served results or refused before parsing. Captchas and blocks are reported as such, never as an empty result. It runs as a CLI, a Python library, a local HTTP API, an MCP server, or a Docker image.
 
 ```bash
-pip install gserp
+pip install serpmaven
 patchright install chromium
 
 # or
-docker run --rm ghcr.io/nodemaven/gserp doctor
+docker run --rm ghcr.io/nodemaven/serpmaven doctor
 ```
 
 ### Proxy Benchmark
